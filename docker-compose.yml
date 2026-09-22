@@ -3,7 +3,8 @@ services:
     build: .
     container_name: auth-service
     ports:
-      - "8099:80"
+      # Внешний порт задаётся в .env (APP_PORT)
+      - "${APP_PORT:-80}:80"
     environment:
       # Путь к файлу БД внутри контейнера
       APP_DB_PATH: /var/www/html/data/app.sqlite
