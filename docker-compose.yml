@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    container_name: auth-service
+    ports:
+      - "8099:80"
+    environment:
+      # Путь к файлу БД внутри контейнера
+      APP_DB_PATH: /var/www/html/data/app.sqlite
+    volumes:
+      # Данные переживают пересборку образа
+      - db-data:/var/www/html/data
+    restart: unless-stopped
+
+volumes:
+  db-data:
